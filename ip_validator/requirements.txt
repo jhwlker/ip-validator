@@ -3,3 +3,5 @@ fastapi
 pytest
 uvicorn
 pytest-asyncio
+grpcio
+grpcio-tools

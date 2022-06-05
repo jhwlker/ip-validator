@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+message IPRequest {
+  string ipAddress = 1;
+  repeated string countries = 2;
+}
+
+message IPResponse {
+  bool valid = 1;
+}
+
+service IPValidator {
+  rpc ValidateIP(IPRequest) returns (IPResponse) {}
+}
