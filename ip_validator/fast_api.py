@@ -1,10 +1,11 @@
 from logging import log, ERROR
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 
 from .models import ResponseModel, RequestModel
 from .service import ip_validator
+from .service.authorizer_service import Authorization
 
 app = FastAPI()
 
@@ -19,6 +20,7 @@ app.add_middleware(
 
 @app.post('/validateip',
           status_code=200,
+          dependencies=[Depends(Authorization(perms=[]))],
           response_model=ResponseModel)
 async def validate_ip_address(request_body: RequestModel = None):
     if request_body is None:
