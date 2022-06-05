@@ -1,3 +1,5 @@
 geoip2
 fastapi
 pytest
+uvicorn
+pytest-asyncio
